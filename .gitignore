@@ -1,0 +1,25 @@
+# random OS junk
+**.DS_Store
+
+# vim files
+**.swp
+**.session
+
+# ctags
+**/tags
+
+# build files
+**.o
+**.bin
+**.hex
+**.cod
+**.lst
+**.map
+**.temp
+
+# might want to keep these
+**.asm
+
+# private keys
+**.crt
+**.pem
