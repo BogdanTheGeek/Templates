@@ -2,6 +2,21 @@ CC=cc
 IDIR=./
 CFLAGS=-Wall -pedantic -I$(IDIR)
 
+# define standard colors
+ifneq (,$(findstring 256color,${TERM}))
+	FAIL    := $(shell tput -Txterm setaf 1)
+	SUCCESS := $(shell tput -Txterm setaf 2)
+	WARNING := $(shell tput -Txterm setaf 3)
+	JAZZ    := $(shell tput -Txterm setaf 4)
+	RESET   := $(shell tput -Txterm sgr0)
+else
+	FAIL    := ""
+	SUCCESS := ""
+	WARNING := ""
+	JAZZ    := ""
+endif
+
+#rules
 .PHONY: all
 all: main.bin lib.o
 	@echo "Done!"
@@ -23,16 +38,3 @@ clean:
 	@echo "Everything Clean!"
 
 
-# define standard colors
-ifneq (,$(findstring 256color,${TERM}))
-	FAIL    := $(shell tput -Txterm setaf 1)
-	SUCCESS := $(shell tput -Txterm setaf 2)
-	WARNING := $(shell tput -Txterm setaf 3)
-	JAZZ    := $(shell tput -Txterm setaf 4)
-	RESET   := $(shell tput -Txterm sgr0)
-else
-	FAIL    := ""
-	SUCCESS := ""
-	WARNING := ""
-	JAZZ    := ""
-endif
