@@ -18,7 +18,7 @@ endif
 
 #rules
 .PHONY: all
-all: main.bin lib.o
+all: main.bin
 	@echo "Done!"
 
 main.bin: main.c
@@ -26,7 +26,7 @@ main.bin: main.c
 	@$(CC) -o $@ $^ $(CFLAGS)
 	@echo "$(SUCCESS)$@: done!$(RESET)"
 
-lib.o: lib.c lib.h
+%.o: %.c %.h
 	@echo "$(WARNING)Building $@ $(RESET)"
 	@$(CC) -c -o $@ $< $(CFLAGS)
 	@echo "$(SUCCESS)$@: done!$(RESET)"
