@@ -1,6 +1,8 @@
 CC=cc
 IDIR=./
 CFLAGS=-Wall -pedantic -I$(IDIR)
+SRC:=$(wildcard *.c)
+OBJ:=$(patsubst %.c,%.o,$(SRC))
 
 # define standard colors
 ifneq (,$(findstring 256color,${TERM}))
@@ -21,14 +23,14 @@ endif
 all: main.bin
 	@echo "Done!"
 
-main.bin: main.c
+main.bin: $(OBJ)
 	@echo "$(WARNING)Building: $@ $(RESET)"
 	@$(CC) -o $@ $^ $(CFLAGS)
 	@echo "$(SUCCESS)$@: done!$(RESET)"
 
 %.o: %.c %.h
 	@echo "$(WARNING)Building $@ $(RESET)"
-	@$(CC) -c -o $@ $< $(CFLAGS)
+	@$(CC) -o $@ -c $< $(CFLAGS)
 	@echo "$(SUCCESS)$@: done!$(RESET)"
 
 
